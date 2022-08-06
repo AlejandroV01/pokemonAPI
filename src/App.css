@@ -36,7 +36,7 @@ body{
 .logo{
   font-family: 'Mouse Memoirs', sans-serif;
   font-size: 3rem;
-  margin-left: 5rem;
+  margin-left: 10rem;
 }
 
 .searchIcon{
@@ -136,4 +136,27 @@ button{
   padding: 0.3rem 1rem;
   border-radius: 20px;
   border: black 2px solid;
+}
+
+@media only screen and (max-width: 600px){
+  .poke-image{
+    width: 70%;
+  }
+
+  .hp{
+    margin-bottom: 0;
+  }
+
+  .pokemon{
+    width: 90%;
+    min-height: 35rem;
+    max-height: 35rem;
+  }
+  .logo{
+    display: none;
+  }
+
+  .nav{
+    height: 10vh;
+  }
 }

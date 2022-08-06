@@ -128,6 +128,7 @@ useEffect(() => {
                     <img src={SearchIcon} alt='search button' className='searchIcon' onClick={() => {findPokemonName()}}/>
                 </div>
             </div>
+            
             <button onClick={findPokemon}>Generate A Random Pokémon</button>
 
             <div className="pokemon">
