@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+    background-color: #222222;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.poke-image{
+  width: 40vw;
+  height: 40vh;
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 5vh 0vh;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+button{
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: rgb(34, 34, 34);
+  color: #f1f5f9;
+  border-radius: 10px;
+  border: 2px solid white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pokemon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: whitesmoke;
+  color:#222222;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  box-shadow: 10px 10px 10px rgb(53, 53, 53);
+  width: 30rem;
+}
+
+.hp{
+  width: fit-content;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  display: flex;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  border: black 2px solid;
+  margin-bottom: 1rem;
+}
+
+.hp h4{
+  font-weight: 400;
+}
+.hp span{
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.values{
+  
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.values div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.types{
+  margin: 2vh 0vh;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.types div{
+  
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  border: black 2px solid;
 }
