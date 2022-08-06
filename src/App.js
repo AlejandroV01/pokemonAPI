@@ -41,7 +41,7 @@ const App = () => {
         'fairy': '#ff9be1'
 
     }
-    let pokemonFound = false;
+    
     const findPokemon = () => {
         
         let id = Math.floor(Math.random() * 400)
@@ -72,7 +72,7 @@ const App = () => {
                     spe: data.stats['5'].base_stat
                 })
             }
-            pokemonFound = true;
+            
             
         
         });
@@ -106,7 +106,7 @@ const App = () => {
                     spe: data.stats['5'].base_stat
                 })
             }
-            pokemonFound = true;
+            
             
             
         
