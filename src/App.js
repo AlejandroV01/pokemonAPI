@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './App.css'
+import SearchIcon from "./magnifying.svg"
 
 
 
@@ -17,7 +18,7 @@ const App = () => {
         spe: ""
     })
 
-    
+    const [searchPokemon, setSearchPokemon] = useState("");
 
     const typeColor = {
         'normal': '#a9a975',
@@ -40,7 +41,7 @@ const App = () => {
         'fairy': '#ff9be1'
 
     }
-
+    let pokemonFound = false;
     const findPokemon = () => {
         
         let id = Math.floor(Math.random() * 400)
@@ -71,10 +72,48 @@ const App = () => {
                     spe: data.stats['5'].base_stat
                 })
             }
+            pokemonFound = true;
             
         
-    });
-}
+        });
+    }
+
+    const findPokemonName = () => {
+        
+        fetch(`https://pokeapi.co/api/v2/pokemon/${searchPokemon}`)
+        .then(response => response.json())
+        .then(data => {
+            
+            if(data.types.length > 1){
+                setPokemon({
+                    hp: data.stats['0'].base_stat, 
+                    image: data.sprites.other.dream_world.front_default, 
+                    name: data.name, 
+                    type1: data.types['0'].type['name'],
+                    type2: data.types['1'].type['name'], 
+                    atk: data.stats['1'].base_stat,
+                    def: data.stats['2'].base_stat,
+                    spe: data.stats['5'].base_stat
+                })
+            } else {
+                setPokemon({
+                    hp: data.stats['0'].base_stat, 
+                    image: data.sprites.other.dream_world.front_default, 
+                    name: data.name, 
+                    type1: data.types['0'].type['name'],
+                    atk: data.stats['1'].base_stat,
+                    def: data.stats['2'].base_stat,
+                    spe: data.stats['5'].base_stat
+                })
+            }
+            pokemonFound = true;
+            
+            
+        
+        })
+        .catch(error => alert('invalid pokémon. Only pokémons #1 - #400 are supported'))
+        
+    }
 
 useEffect(() => {
     findPokemon()
@@ -82,7 +121,14 @@ useEffect(() => {
 
     return (
         <div className='main'>
-            <button onClick={findPokemon}>Generate</button>
+            <div className="nav">
+                <div className="logo">POKÉMON API</div>
+                <div className="inputDiv">
+                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value)}}/>
+                    <img src={SearchIcon} alt='search button' className='searchIcon' onClick={() => {findPokemonName()}}/>
+                </div>
+            </div>
+            <button onClick={findPokemon}>Generate A Random Pokémon</button>
 
             <div className="pokemon">
                 <div className="hp"><h4>HP</h4> <span>{pokemon.hp}</span></div>
