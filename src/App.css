@@ -142,15 +142,18 @@ button{
   .poke-image{
     width: 70%;
   }
-
+  button{
+    margin-top: 3vh;
+    font-size: 1.8rem;
+  }
   .hp{
     margin-bottom: 0;
   }
 
   .pokemon{
     width: 90%;
-    min-height: 35rem;
-    max-height: 35rem;
+    min-height: 30rem;
+    max-height: 30rem;
   }
   .logo{
     display: none;
@@ -158,5 +161,9 @@ button{
 
   .nav{
     height: 10vh;
+  }
+
+  .main{
+    padding-bottom: 5vh;
   }
 }
