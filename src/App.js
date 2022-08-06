@@ -124,7 +124,7 @@ useEffect(() => {
             <div className="nav">
                 <div className="logo">POKÉMON API</div>
                 <div className="inputDiv">
-                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value)}}/>
+                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value.toLowerCase())}}/>
                     <img src={SearchIcon} alt='search button' className='searchIcon' onClick={() => {findPokemonName()}}/>
                 </div>
             </div>
