@@ -44,7 +44,7 @@ const App = () => {
     
     const findPokemon = () => {
         
-        let id = Math.floor(Math.random() * 905)
+        let id = Math.floor(Math.random() * 898)
         
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
@@ -133,7 +133,8 @@ console.log(searchPokemon)
             <div className="nav">
                 <div className="logo">POKÉMON API</div>
                 <div className="inputDiv" >
-                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value.toLowerCase())}} value={searchPokemon} 
+                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value.toLowerCase())}} 
+                    value={searchPokemon.charAt(0).toUpperCase() + searchPokemon.slice(1)} 
                     onKeyPress={(e) => {
                         if (e.key === "Enter"){
                             findPokemonName()
