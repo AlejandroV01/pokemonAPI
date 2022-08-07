@@ -44,7 +44,7 @@ const App = () => {
     
     const findPokemon = () => {
         
-        let id = Math.floor(Math.random() * 400)
+        let id = Math.floor(Math.random() * 905)
         
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
@@ -52,8 +52,10 @@ const App = () => {
             
             if(data.types.length > 1){
                 setPokemon({
+                    id: data.id,
                     hp: data.stats['0'].base_stat, 
-                    image: data.sprites.other.dream_world.front_default, 
+                    image: data.sprites.other.dream_world.front_default,
+                    backupImage: data.sprites.other.home.front_default,  
                     name: data.name, 
                     type1: data.types['0'].type['name'],
                     type2: data.types['1'].type['name'], 
@@ -63,8 +65,10 @@ const App = () => {
                 })
             } else {
                 setPokemon({
+                    id: data.id,
                     hp: data.stats['0'].base_stat, 
-                    image: data.sprites.other.dream_world.front_default, 
+                    image: data.sprites.other.dream_world.front_default,
+                    backupImage: data.sprites.other.home.front_default, 
                     name: data.name, 
                     type1: data.types['0'].type['name'],
                     atk: data.stats['1'].base_stat,
@@ -77,7 +81,7 @@ const App = () => {
         
         });
     }
-
+    
     const findPokemonName = () => {
         
         fetch(`https://pokeapi.co/api/v2/pokemon/${searchPokemon}`)
@@ -86,8 +90,10 @@ const App = () => {
             
             if(data.types.length > 1){
                 setPokemon({
+                    id: data.id,
                     hp: data.stats['0'].base_stat, 
                     image: data.sprites.other.dream_world.front_default, 
+                    backupImage: data.sprites.other.home.front_default,
                     name: data.name, 
                     type1: data.types['0'].type['name'],
                     type2: data.types['1'].type['name'], 
@@ -97,8 +103,10 @@ const App = () => {
                 })
             } else {
                 setPokemon({
+                    id: data.id,
                     hp: data.stats['0'].base_stat, 
-                    image: data.sprites.other.dream_world.front_default, 
+                    image: data.sprites.other.dream_world.front_default,
+                    backupImage: data.sprites.other.home.front_default, 
                     name: data.name, 
                     type1: data.types['0'].type['name'],
                     atk: data.stats['1'].base_stat,
@@ -107,11 +115,11 @@ const App = () => {
                 })
             }
             
-            
+            console.log(data)
             
         
         })
-        .catch(error => alert('invalid pokémon. Only pokémons #1 - #400 are supported'))
+        .catch(error => alert('Invalid Pokémon.'))
         
     }
 
@@ -119,21 +127,39 @@ useEffect(() => {
     findPokemon()
 }, []);
 
+console.log(searchPokemon)
     return (
         <div className='main'>
             <div className="nav">
                 <div className="logo">POKÉMON API</div>
-                <div className="inputDiv">
-                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value.toLowerCase())}}/>
-                    <img src={SearchIcon} alt='search button' className='searchIcon' onClick={() => {findPokemonName()}}/>
+                <div className="inputDiv" >
+                    <input type="text" placeholder='Search a Pokémon' onChange={(prevLetter) => {setSearchPokemon(prevLetter.target.value.toLowerCase())}} value={searchPokemon} 
+                    onKeyPress={(e) => {
+                        if (e.key === "Enter"){
+                            findPokemonName()
+                            setSearchPokemon('')
+                        } else {
+                            return
+                        }
+                    }}
+                    />
+                    <img src={SearchIcon} alt='search button' className='searchIcon' onClick={() => findPokemonName()}/>
                 </div>
             </div>
             
             <button onClick={findPokemon}>Generate A Random Pokémon</button>
 
             <div className="pokemon">
-                <div className="hp"><h4>HP</h4> <span>{pokemon.hp}</span></div>
-                <img src={pokemon.image} alt="" className='poke-image'
+                <div className="pokemonTop">
+                    <div className="hp">
+                        <h4>HP</h4> 
+                        <span>{pokemon.hp}</span>
+                    </div>
+                    <div className="id">
+                        <h4>#{pokemon.id}</h4>
+                    </div>
+                </div>
+                <img src={pokemon.image ? pokemon.image : pokemon.backupImage} alt="" className='poke-image'
                 style={{}}/>
                 <h1 className="name" >{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
                 <div className="types">

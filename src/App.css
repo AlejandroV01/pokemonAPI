@@ -11,7 +11,7 @@ body{
 }
 
 .poke-image{
-  width: 100%;
+  width: 80%;
   height: 20rem;
   
 }
@@ -138,13 +138,35 @@ button{
   border: black 2px solid;
 }
 
+.pokemonTop{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.id{
+  width: fit-content;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  border: black 2px solid;
+  
+}
+.id h4{
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
 @media only screen and (max-width: 600px){
   .poke-image{
     width: 70%;
+    margin-top: 1rem;
+    min-height: 200px;
   }
   button{
     margin-top: 3vh;
     font-size: 1.8rem;
+    
   }
   .hp{
     margin-bottom: 0;
